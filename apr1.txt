@@ -1,17 +1,1 @@
-Process ID: Every process has a uniqueidentifier which is called process ID and is a non negative integer andit always remain unique and it is used as a process of other identifiers,to guarantee uniqueness.
-for example, applications sometimes include the process Id as a part of a filename in an attempt ti generate unique filenames.
-Although unique,process IDs are reused. As process termintes,their IDs become candidate for reuse.
-
-Fork Function:
-An existing process can create a new one by calling the fork function.
-it is in #include<unistd.h> headerfile
-Syntax: pid_t fork(void);
-Returns: 0 in child,process id of child in parent,-1 on error.
-The new process created by fork is called child process.
-
-One characterstics of fork is that all file descriptors that are opened in parent are duplicated in child. The parent and child share the same file table entry for every open file descriptor. Other than this,there areother things which are inherited by child from the parent and which are real user id,real group id,effective used id,andeffective used id,process group id,session id and many more other things.
-There are also some differences between parent and child.
-
-vfork function:
-it works similar to fork function but onlly differnece is it does not use the address space of parent;the child simply calls the exec or exit just after vfork.
 

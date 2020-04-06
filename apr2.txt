@@ -1,0 +1,25 @@
+Exit function:exit is equivalent to return function.
+The exit command terminates a script, just as in a C program. It can also return a value, which is available to the script's parent process.
+_exit and _Exit both have mojor differnences.
+exit function includes calling of all exit handlers that have been registered by atexit function it means if any other process is running in the background it will take care of them but it is not in the case of calling Exit.it means Exit does not take care of exithandlers and signal handlers.
+
+wait and waitpid function:
+whenever a process terminates,kernel sends notification to the parent or we can say it as a signal and it is totally upto the parent whether it ignores or want to handle the error.
+syntax:
+#include <sys/types.h> 
+#include <sys/wait.h> 
+
+
+pid_t wait(int *status); 
+pid_t waitpid(pid_t pid, int *status, int options); 
+int waitid(idtype_t idtype, id_t id, siginfo_t * infop , int options );
+
+first what is state change is needed to understand:
+1. Child is terminated
+2. child was stopped by a signal
+3. child was resumed by a signal
+ In the case of a terminated child, performing a wait allows the system to release the resources associated with the child; if a wait is not performed, then terminated child dont rlease the resources allocated.
+The wait() system call suspends execution of the current process until one of its children terminates.
+The waitpid() system call suspends execution of the current process until a child specified by pid argument has changed state.
+
+

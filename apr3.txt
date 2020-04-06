@@ -1,0 +1,64 @@
+wait3 and wait4 fucntion:
+how these function differ from wait and waipid function.
+There is one different functionality that make it different from other functions described earlier
+first understand it using syntax:
+#include
+#include
+#include
+#include
+<sys/types.h>
+<sys/wait.h>
+<sys/time.h>
+<sys/resource.h>
+pid_t wait3(int *statloc, int options, struct
+rusage *rusage);
+pid_t wait4(pid_t pid, int *statloc, int options,
+struct rusage *rusage);
+
+difference can be seen clearly that is one more argument that is *rusage. kernel return a summary of all the allocated resources by a terminated process and all of its child.
+resources summary has user cpu time,system cpu time,number of page faults,number of signal received.
+
+Race conditions:
+These are the situations when more than two processes demands for the same resources or want to use the shared data.
+it is not predictable which process will get the resources first it is depended on logic and kernel scheduling algos.
+Race conditions cause abnormal termination and it is needed to handle.
+to avoid race condition:
+1.signalling is used between multiple processes.
+2.inter process communicaion.
+
+Exec function:
+exec function is used to give execution to the child process which is created using fork function.
+when exec function is called then new process start executing and replace the previous one.
+but it will cause process id to be changed as we have learnt processids can be reused although its just a replacement of processes.
+syntax:
+#include <unistd.h>
+int execl(const char *pathname, const char *arg0,
+... /* (char *)0 */ );
+int execv(const char *pathname, char *const argv []);
+int execle(const char *pathname, const char *arg0, ...
+/* (char *)0, char *const envp[] */ );
+int execve(const char *pathname, char *const
+argv[], char *const envp []);
+int execlp(const char *filename, const char *arg0,
+... /* (char *)0 */ );
+int execvp(const char *filename, char *const argv []);
+
+these are six variants of the exec function.
+difference can be seen in arguments.some uses pathname whereas some use filename.
+
+changing user id and group id:
+in the unix system previleges plays the most important role and without previleges no one can use the files for read or write.
+We can set the real user ID and effective user ID with the setuid function. Similarly, we can set the
+real group ID and the effective group ID with the setgid function.
+syntax:
+#include <unistd.h>
+int setuid(uid_t uid);
+int setgid(gid_t gid);
+
+some unix version support the swapping of real user ID and the effective user ID with the setreuid function.
+syntax:
+#include <unistd.h>
+int setreuid(uid_t ruid, uid_t euid);
+
+swapping of real group id and effecive group id:
+int setregid(gid_t rgid, gid_t egid);
