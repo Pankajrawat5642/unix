@@ -1,0 +1,33 @@
+Process group: Processes which gets signals from the same terminal are co sidered to be in the one process group.
+like procees has a process id, similarly process group also remain associated with id which is usually equal to the process id of one process in that group.
+
+getgrp function:
+This function is used to return the process groupid of the calling process.
+In older BSD version this function was like 
+pid_t getpgid(pid_t pid);
+this function returnsthe process group id of the proceess which has process id as pid and to get the process group id of the calling process we must put pid as 0.
+for the  process,process group id is equal to process id that process is considered as process groupleader.
+
+Process Group lifetime:time between creation of a process group and termination of the last remaining process of that group.
+any process with pid can join any existing group with gid using setpgid function.
+int setpgid(pid_t pid,pid_t pgid);
+notes about setpgid function:
+
+1.using this function: pid becomes a member of group gid.
+2if both the arguments are equal or pgid is 0 then pid becomes the group leader.
+3.if pid is 0 then process id of the caller is used.
+4. a process can only set group id only for either itself or any of its childern until its child has not call one of the exec function.
+
+Session:
+A session is a collection of one or more process groups but there is not thing like session id.
+a process establishes a new sessionby calling the setsid function.
+#include<unistd.h>.
+pid_t setsid(void);
+it returns process group id if ok and 1 on error.
+notes about setsid:
+If the calling proces is not a process group leader, this function create a new session and become the session leader and process group leader and this process does not remain associated with any controlling terminal.
+
+getsid function:
+pid_t getsid(pid_t pid);
+returns:session leade's process group id if ok,1 on error.
+
