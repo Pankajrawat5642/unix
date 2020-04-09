@@ -1,0 +1,25 @@
+System function:
+system function passes the string pointed to by command argument to the host environment so that a command processor can execute it.
+syntax:
+#include<stdlib.h>
+int system(const char *command);
+
+if passed argument is null ,system returns non zero value if command processor is available or we can say it inquires whether command processor is available or not.
+
+whatever string we are passing in the command argument,system function causes it to execute at aterminal.
+for better understanding refer to the system.c file.
+
+Process accounting:
+every unix kernel is faciliatedwith process accounting. it generally means keeping all the records in a log file whenever a process or program is executed on a linux system.
+It has some specific uses:
+1. calculate the time for which an user has used a particular program.
+2.find the user cpu time.
+3.to keep the detailed information what an user has been doing in a program or we can say software for a long time.
+
+User identification:
+suppose if a user has maintained different user names for single user id, he can do this if he want to have different shell according to different different user then in such situation getlogin function will be useful because it returns a pointer to the string of user name.
+
+syntax:
+#include<unistd.h>
+char *getlogin(void);
+
