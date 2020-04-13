@@ -1,0 +1,17 @@
+Controlling Terminal:
+processe together form process group and process groups together form session.
+thus there is process group leader and similarly session leader.
+In a session, only one group can remain in foreground process and all the otherremains in background.
+session leader which is used to establish the connection to the terminal is called controliing process.thus we can say controlling terinal is middleware between foreground and background processes.
+
+tcgetpgrp function:
+syntax:
+pid_t tcgetpgrp(int filedes);
+it returns the process group id of the foreground process and it is important bbecause controlling terminal must be aware that where he is supposed to send signals.
+
+
+tcsetpgrp function:
+syntax:
+int tcsetpgrp(int filedes,pid_t pgrpid);
+this function is used to set forground process group if to pgrpid which is the process group id of the process group in same session for the controlling terminal reffered by filedes.
+
