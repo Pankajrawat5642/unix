@@ -1,0 +1,14 @@
+job control:
+A job is simply a collection or processes,or we can say a pipeline of processes.we can schedule which jobs to make run in foreground and which jobs in background.This is called job control.
+Running jobs in foreground means the processes which are in foreground have terminal access.
+for job control a shell which support job control and the terminal driver and kernel compatability for job control are must.
+job control gives a number of features that are provided by shell and terminaltogether.
+for example we can suspend the execution of a process using CTRL-Z and resume it using fg or bg command.
+
+
+Shell Execution:
+the init process,which has process id and group id 1.
+since process group id is also 1 means it is the leader for process group 1.whenever we start a process from the shell, the shell will place it in a different process group from itself.that is,the shell will fork(), the child process will call setpgid() to separate itself from the shell's process grou, and then it will call exec function to execute that program.this is how command which we enter in shell is executed.
+if we want to execute a pipeline of processes, then they will be places in single process group which will be different from shell's process group.
+
+
