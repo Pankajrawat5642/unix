@@ -1,0 +1,63 @@
+Reliable signal terminologies and semantics:
+When an interruption occur during the execution of any program, it causes a signal to generate.
+A signal is considered to  be generated, when the action associated with the signal has taken. We have discussed what are the action or dispostion of a signal and those are as follows:
+1. Ignore the signal 
+2. catch the signal
+3. let the default action happen.
+
+for the time between generation of a signal and delivery of that signal, signal is considered to be pending.
+
+The process, can block the signal and if dispostions of the signal are default action or catch the signal then signals remains pending until the process either:
+a. unblocks the signal
+b. changes the action to ignore the signal
+
+The sigpending can be used by a process to determine all the pending or blocked signals.
+
+If a signal is regenrated while its in the blocked state then signals are queued. But in this case, we cant make sure which signal is delivered first to the process, however the signals related to the current state of the process are delivered before than other signals..
+
+Each process has a signal mask,which we can think of as having one bit for each possible signal by which we can know if any bit is on then it means that signal is still to be delivered.
+
+sigpromask function is used to examine and change its current signal mask.
+
+
+KILL AND RAISE FUNCTIONS:
+
+kill funcition sends a signal to a process or a group of processes.
+raise function allows a process to send signal to itself.
+
+Syntax:
+int kill(pid_t pid, int signo);
+int raise(int signo);
+
+Both return 0 if ok, 1 on error.
+
+raise(signo) is equivalent to kill(getpid(), signo).
+
+There are 4 different conditions for the pid argument to kill.
+
+1) pid>0 -> The signal is sent to process with process id pid.
+2) pid==0 -> The signal is sent to all the processe whose process group id is equal to that of sender and sender must have permissions to send the signal. here, all process excludes system processes like init.
+
+3) pid<0 ->The signal is sent to all processes except system process whose process group id is equal to the pid..
+
+4) pid==1 -> The signal is sent to all processes on the system for which the sender has permissions to send the signal.
+
+permission which are required to send the signal:
+1. The superuser can send signal to all the processes.
+2. for other users, read and effective user id of the sender must be equal to that of receiver.
+
+if signo is o in kill call.
+for example kill(pid,0)
+it is not used to send any example but it will be checked whether process with pid exist or not.
+
+alarm and pause function:
+alarm function is used to set the timer for a specific time and when timer expires the SIGALRM signal is generated and default action here is to terminate theprocess.
+#include<unistd.h>
+unsigned int alarm(unsigned int seconds)
+it returns 0 or number of seconds until previously set alarm.
+
+The pause function suspends the caliing process until a signal is caught.
+#include<unistd.h>
+int pause(void);
+
+returns: 1 with errno set to EINTR.
