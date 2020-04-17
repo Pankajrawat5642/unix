@@ -1,0 +1,34 @@
+Interrupted System Calls:
+when a process caught a signal while the process was blocked in a slow syatem calls,the system call is interrupted.
+
+system calls are basically categorized into two category:
+1. slow system calls
+2. fast system calls
+
+slow system calls are those system calls which takes more time to complete the task. for example, disk reads and disk writes which are slow system calls, if not done properly or are interrupted, can block or wait for ever.
+
+fast system calls are for which kernel takes lesser time to complete. for example a getpid() function is a fast system call which return information to the process which are immediately available to the kernel.
+
+
+REENTRANT FUNCTION:
+when a process is in the middle of execution,at that time process is interrupted and signal handler may cause the process to get caught in an inconsistant state.
+for Example, if a process is writing some data to a file lets suppose it is writing some data on the disk or reading some data from the disk or it is doing some calculation and in between that process is interrupted, in this situation, the task which was assigned to the process may be half done and it is unpredictable upto what extent task was completed or we cant say at what instant signal hits the process.
+
+so, using signal handler there are some functions which access he gloabl data and may cause the problem.
+
+Reentrant functions are those functions, which are safer to use inside a signalhandler.
+There are many reentrant functions, i am listing some of these which we have used or studied earlier.
+1.abort
+2.access
+3.mkdir
+4. lseek
+5. lstat
+6. kill
+7. link
+8. dup
+9. dup2
+10. close
+11. execv
+12. _exit
+13. _Exit
+And there are many more.
