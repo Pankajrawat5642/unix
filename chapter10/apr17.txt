@@ -1,0 +1,34 @@
+Segnal sets:
+As we learnt, there is signal mask defined in which one integer is defined and one bit is used for one signal and sometimes an integer size is not sufficient for all the differnt signals thats why posix.1 defines a new datatype that is sigset_t .
+And we have some functions to manipulate the sigset_t datatype.
+
+There are two ways to initialize the Signal set.
+a) first one is, sepecify the set as empty with sigempty function and then add signals individually.
+b) second one is,specify the set as full with sigfillset function and then remove signals by specifying them individally.
+
+There are some functions to manipiulate signal set.
+1. syntax:
+int sigemptyset(sigset_t *set);
+it initializes the signal set *set to exclude all the signals.
+
+2. syntax:
+int sigfillset(sigset_t *set)
+it initializes the signal set to include all the signals.
+
+3. syntax:
+int sigaddset(signalset_t *set, int signo);
+it add the signal specified by signo to the set specified by seignalset_t set.
+
+4. syntax:
+int sigdelset(signalset_t *set, int signo);
+it removes the signo signal from the set *set.
+
+5.syntax:
+int sigiismember(signalset_t *set, int signo);
+it is used to verify whether a signo signal is a member of *set.
+
+
+sigpending function:
+int sigpending(sigset_t *set);
+this function returns the set of functions which are blocked from delivery.
+
