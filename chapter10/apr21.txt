@@ -1,0 +1,18 @@
+sigsuspend function:
+If we want that signal does not interrupt the critical section of the program then we can use sigsuspend function.
+This posix defined function allows a process to temporarily changes its signal mask, and then until waits until a signal is raised that either terminats or is handled by the process.
+
+Syntax:
+#include<signal.h>
+int sigsuspend(const signalset_t *set);
+
+The signal mask of the process is set to value represented by set in sigsuspend function.
+
+Signal remains undelivered until the signal is unblocked. But if some signals occur between unblocking and pause then in between that time signal is lost.. To correct this problem, we use sigsuspend function to restore the signal mask and put process in sleep and both as a atomic operation.
+
+abort function:
+this function send the SIGABRT signal to the caller and causes abnormal termination of the process.
+#include<stdlib.h>
+void abort(void);
+
+
