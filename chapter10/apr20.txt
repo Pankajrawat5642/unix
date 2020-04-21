@@ -1,0 +1,27 @@
+Sigaction function: As earlier studied, wee have signal() function to decide the action associated with the signal.
+But sigaction provides more control over signal() function and gives more signal management capabilities.
+We can use it to block reception of specified signals and can get much data about a process state when a signal is raised.
+
+Synatx:
+#include<signal.h>
+int sigaction(int signo, const struct sigaction *act, struct sigaction *oldact);
+
+This function changes the action associated with signo signal but it cant be SIGKILL or SIGSTOP.
+act is the new behaviour specified and oldact is previous signal action.
+ 
+In this function struct sigaction is used.
+
+sigsetjmp and siglongjmp functions:
+used for branching from signal handler.
+-> non-logical branching
+Means passing control to somewhere else.
+
+Syntax:
+#include<setjmp.h>
+
+int sigsetjmp(sigjmp_buf env, int savemask);
+Returns: 0 if called directly, nonzero if returning from a call to siglongjmp.
+
+void siglongjmp(sigjmp_buf env, int val);
+
+If save mask is nonzero, then signal mask is saved in env and when siglongjmp is called it is restored.
