@@ -1,0 +1,1 @@
+In this program control does not reach to the setjmp function so code after that will not be executed.

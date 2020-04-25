@@ -1,0 +1,2 @@
+As learnt earlier functions which are supposed to operations like fread and fwrite on disk buffer are slow system calls and usually takes longer time to complete and in this process setting an alarm of 1 second using signal handler interrupt the process and may cause it to go in an inconsistent state.
+

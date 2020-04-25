@@ -1,0 +1,5 @@
+As we have read in the chapter some conditions when a process can send signal to other and those conditions were:
+1. You must be a superuser.
+2. sender's real and effecctive user id must be equal to those of receiver.
+
+That's why siginfo structure is containing the real user id field.
