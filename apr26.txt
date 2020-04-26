@@ -1,0 +1,28 @@
+Thread: A process is a execution of a program and which consists of multiple threads. Thread is a portion of a executable program which is assigned some taks.A single program can have multiple threads and which access the sharable resources(memory, file descriptor).
+Threads are used to complete the asynchronus events in a synchronus manner.
+Every thread or thread of control is assigned some tasks like in a program two kind of tasks may be accessing the memory and fetching the details this way we can use two separate threads to complete these taks.
+
+Unlike pid process id, thread has thread id which is of Pthread_t data type.
+
+Function to compare to thread ids:
+
+#include<pthread.h>
+int pthread_equal(pthread_t tid1, pthread_t tid2);
+
+This function returns nonzero if both thread ids are equal and o if not.
+
+Thread identification:
+
+A thread can get its own thread id by calling following function:
+
+#include<pthread.h>
+pthread_t pthread_self(void);
+
+Thread creation:
+
+#include<pthread.h>
+int pthread_creat(pthread_t *restict tidp, const pthread_attr_t *restrict atr, void *(*start_rtn)(void *), void *restrict arg);
+
+The tidp is pointing to a memory location which is set to thread id of the newly created thread. attr argument is used to manipulate the thread attributes.
+The newly created thread start running in the address of the start_rtn function and attribute passed to this function is an typeless pointer and if we want to pass more than one argument to this function then those attributes could be stored in an structure and then address of this structure can be passed as arg argument.
+
