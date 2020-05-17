@@ -1,0 +1,10 @@
+Non-Blocking I/O: The slow system calls are that block caller forever.
+Non -Blocking I/O lets us issue an I/o operation, like open,read, or write and not let it block forever.
+If the operation can not be completed , the calls returns immediately with an error noting that the operation would have blocked.
+In in any program issues number of write calls more than needed to write the data then rest just return an error. This type of loop, called polling, is a waste of CPU time on a multiuser system.
+
+Record locking: suppose more than one pprocess is trying to write some data to the same file, then it will create some kind of ambiguity.
+To avoid this kind of problem record locking is used.
+it is ability of a process to prevent other processes from modifying a region of a file while the first process is reading or modifying that portion of the file.
+
+
