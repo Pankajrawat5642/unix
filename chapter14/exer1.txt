@@ -1,0 +1,1 @@
+Ques1: If one process is acquring the read lock  on a  file  and another process is trying to acquire write lock on that same file then seconf process get starved but if  it done using the same process then read lock  is updated by write lock.
