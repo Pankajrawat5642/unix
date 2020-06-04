@@ -22,8 +22,8 @@ int main(void)
 		while(fgets(line,100,stdin)!=NULL)
 		{
 			n=strlen(line);
-			write(fd1[1],line,n);
-			n=read(fd2[0],line,100);
+			fputs(fd1[1],line,n);
+			n=fgets(fd2[0],line,100);
 			if(n==0)
 			{
 				break;
